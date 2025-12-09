@@ -1,6 +1,5 @@
 package com.example.Product.DTO;
 
-import com.example.Product.Entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ProductDTO {
     private  Long id;
      private String name;
-     private String description;
      private double price;
+     private String description;
      private Long categoryId;
 }
