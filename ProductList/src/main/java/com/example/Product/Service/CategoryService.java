@@ -2,6 +2,7 @@ package com.example.Product.Service;
 
 import com.example.Product.DTO.CategoryDTO;
 import com.example.Product.Entity.Category;
+import com.example.Product.Exception.CategoryAlreadyExistException;
 import com.example.Product.Mapper.CategoryMapper;
 import com.example.Product.Repository.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +24,11 @@ public class CategoryService {
         return  "deleted Successfully";
     }
 
-    public CategoryDTO getcategoryDTO(CategoryDTO categoryDTO) {
+    public CategoryDTO createcategoryDTO(CategoryDTO categoryDTO) {
+        Optional<Category> optionalCategoryDTO=categoryRepository.findByName(categoryDTO.getName());
+        if(optionalCategoryDTO.isPresent()){
+            throw  new CategoryAlreadyExistException("Category "+ categoryDTO.getName() +"  already exists");
+        }
         Category category = CategoryMapper.toCategoryEntity(categoryDTO);
         category= categoryRepository.save(category);
         return  CategoryMapper.toCategoryDTO(category);
