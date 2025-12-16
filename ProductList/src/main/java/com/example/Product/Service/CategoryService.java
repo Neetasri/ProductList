@@ -7,8 +7,6 @@ import com.example.Product.Mapper.CategoryMapper;
 import com.example.Product.Repository.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
